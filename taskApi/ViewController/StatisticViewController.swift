@@ -11,8 +11,8 @@ import UIKit
 class StatisticViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     //MARK: Private Properties
     private struct Constants {
-        static let SymbolCellIdentifier = "SymbolCellIdentifier"
-        static let CountOfSection = 1
+        static let symbolCellIdentifier = "symbolCellIdentifier"
+        static let countOfSection = 1
     }
     @IBOutlet private weak var symbolsTableView: UITableView!
     private let arrayOfSymbols = Array(CurrentSession.shared.dictSymbols.keys)
@@ -25,13 +25,13 @@ class StatisticViewController: UIViewController, UITableViewDelegate, UITableVie
         symbolsTableView.dataSource = self
 
         symbolsTableView.register(UINib(nibName: "SymbolTableViewCell", bundle: nil),
-                                  forCellReuseIdentifier: Constants.SymbolCellIdentifier)
+                                  forCellReuseIdentifier: Constants.symbolCellIdentifier)
         symbolsTableView.tableFooterView = UIView()
     }
 
     //MARK: Table view methods
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.SymbolCellIdentifier,
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.symbolCellIdentifier,
                                                  for: indexPath) as! SymbolTableViewCell
         cell.configure(with: arrayOfSymbols[indexPath.row])
         return cell
@@ -42,6 +42,6 @@ class StatisticViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Constants.CountOfSection
+        return Constants.countOfSection
     }
 }
